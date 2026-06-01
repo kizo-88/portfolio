@@ -16,7 +16,7 @@ export default function Services() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                     <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9]">
                         What I <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Do Best.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Build.</span>
                     </h2>
                     <p className="text-gray-400 max-w-md text-lg text-right md:text-right">
                         Combining artistic direction with engineering precision to build digital products that perform.

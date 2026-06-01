@@ -9,10 +9,31 @@ import Clients from './components/Clients.jsx';
 import { LiquidButton, LiquidContainer } from '@/components/ui/liquid-glass-button';
 
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiThreedotjs, SiNodedotjs, SiGraphql, SiCplusplus, SiPython } from 'react-icons/si';
-import { FaJava } from 'react-icons/fa';
+import { FaJava, FaImage, FaFolderOpen } from 'react-icons/fa';
 import { DiMsqlServer } from "react-icons/di";
 import { BsBarChartFill } from "react-icons/bs";
 import './App.css';
+
+import iotOdorDashboardImg from './assets/iot_odor_dashboard_1780215127104.png';
+import fleetManagementImg from './assets/fleet_management_1780215142704.png';
+import pickleballBookingImg from './assets/pickleball_booking_1780215165753.png';
+import companyLandingImg from './assets/company_landing_1780215181913.png';
+import adminDashboardImg from './assets/admin_dashboard_1780215213097.png';
+import ecommerceDashboardImg from './assets/ecommerce_dashboard_1780215227709.png';
+import agenticOsImg from './assets/agentic_os_1780215244839.png';
+import cognitiveArchitectureImg from './assets/cognitive_architecture_1780215262175.png';
+import localEdgeAiImg from './assets/local_edge_ai_1780215278661.png';
+import multiAgentEnvImg from './assets/multi_agent_env_1780215303756.png';
+import iotCleaningMonitorImg from './assets/iot_cleaning_monitor_1780215323477.png';
+import homestayLandingImg from './assets/homestay_landing_1780215338906.png';
+import inventoryDashboardImg from './assets/inventory_dashboard_1780215363502.png';
+import travelSystemImg from './assets/travel_system_1780215380155.png';
+import docControlSystemImg from './assets/doc_control_system_1780215403691.png';
+import localllmAppImg from './assets/localllm_app_1780215419776.png';
+import corpManagementImg from './assets/corp_management_1780215436956.png';
+import socialAppImg from './assets/social-app.png';
+import aiDashboardImg from './assets/ai-dashboard.png';
+
 
 const techLogos = [
   { node: <SiReact title="React" />, title: "React", href: "https://react.dev" },
@@ -31,6 +52,21 @@ const techLogos = [
 ];
 
 function App() {
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
+  };
+
   return (
     <div className="portfolio-app">
       <nav style={{ padding: '20px 40px', position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 50, color: 'white', display: 'flex', justifyContent: 'space-between', boxSizing: 'border-box', alignItems: 'center', backdropFilter: 'blur(5px)' }}>
@@ -144,25 +180,120 @@ function App() {
               skewAmount={4}
             >
               {[
-                { title: "IOT Odor Analytic Dashboard", desc: "Real-time tracking and analysis of odor data using IoT sensors.", color: "#1a1a1a" },
-                { title: "Fleet Management System", desc: "Complete vehicle tracking and fleet operation management platform.", color: "#222" },
-                { title: "Pickleball Booking System", desc: "User booking platform and admin dashboard for pickleball courts.", color: "#151515" },
-                { title: "Company Landing Page", desc: "Modern, responsive landing page designed for corporate presence.", color: "#1c1c1c" },
-                { title: "Admin Dashboard", desc: "Centralized dashboard for analytics and user management.", color: "#1a1a1a" },
-                { title: "E-commerce Platform", desc: "Full online store with admin dashboard and integrated payment system.", color: "#222" },
-                { title: "Agentic Operating System (AOS)", desc: "Next-generation operating system driven by autonomous agents.", color: "#151515" },
-                { title: "Cognitive Architecture & LTM", desc: "Advanced AI cognitive architecture with Long-Term Memory capabilities.", color: "#1c1c1c" },
-                { title: "Local-Edge AI", desc: "Efficient machine learning models deployed directly to edge devices.", color: "#1a1a1a" },
-                { title: "Multi-Agent Dev Env", desc: "Development environment tailored for multi-agent systems.", color: "#222" },
-                { title: "IoT Cleaning Monitor", desc: "Mobile IoT monitoring system for cleaning department operations.", color: "#151515" },
-                { title: "Homestay Landing Page", desc: "Elegant and user-friendly landing page for homestay bookings.", color: "#1c1c1c" },
-                { title: "Inventory Dashboard", desc: "Comprehensive inventory management system with analytics dashboard.", color: "#1a1a1a" },
-                { title: "Travel System", desc: "End-to-end travel booking and itinerary management platform.", color: "#222" },
-                { title: "Document Control", desc: "Secure document control and version management system.", color: "#151515" },
-                { title: "LocalLLM Desktop App", desc: "Desktop application for running Large Language Models locally.", color: "#1c1c1c" },
-                { title: "Corporation Management", desc: "Enterprise-grade corporation management and workflow system.", color: "#1a1a1a" },
-                { title: "Job Offering System", desc: "Platform connecting employers with job seekers efficiently.", color: "#222" },
-                { title: "Toilet Monitoring System", desc: "IoT-based toilet monitoring and maintenance tracking system.", color: "#151515" }
+                {
+                  title: "IOT Odor Analytic Dashboard",
+                  desc: "Real-time tracking and analysis of odor data utilizing connected IoT sensors and data visualization.",
+                  tags: ["React", "Node.js", "IoT"],
+                  image: iotOdorDashboardImg
+                },
+                {
+                  title: "Fleet Management System",
+                  desc: "Comprehensive system for tracking, maintaining, and managing vehicle fleets efficiently.",
+                  tags: ["Next.js", "PostgreSQL", "Tailwind"],
+                  image: fleetManagementImg
+                },
+                {
+                  title: "Pickleball Booking System",
+                  desc: "Court booking system featuring user reservations and a comprehensive admin management dashboard.",
+                  tags: ["React", "Firebase", "Tailwind"],
+                  image: pickleballBookingImg
+                },
+                {
+                  title: "Company Landing Page",
+                  desc: "Modern, responsive, and high-performance landing page designed to enhance corporate online presence.",
+                  tags: ["React", "Vite", "Tailwind"],
+                  image: companyLandingImg
+                },
+                {
+                  title: "Admin Dashboard",
+                  desc: "Centralized analytics dashboard providing business intelligence and user management capabilities.",
+                  tags: ["React", "Typescript", "Tailwind"],
+                  image: adminDashboardImg
+                },
+                {
+                  title: "E-Commerce Platform",
+                  desc: "Full-stack e-commerce platform including a management dashboard and secure payment system integration.",
+                  tags: ["Next.js", "Node.js", "PostgreSQL"],
+                  image: ecommerceDashboardImg
+                },
+                {
+                  title: "Agentic Operating System (AOS)",
+                  desc: "Next-generation operating system powered by autonomous agents to handle complex workflows.",
+                  tags: ["Python", "AI", "System"],
+                  image: agenticOsImg
+                },
+                {
+                  title: "Cognitive Architecture & LTM",
+                  desc: "Advanced AI system featuring cognitive architecture and Long-Term Memory (LTM) for continuous learning.",
+                  tags: ["Python", "TensorFlow", "AI"],
+                  image: cognitiveArchitectureImg
+                },
+                {
+                  title: "Local-Edge AI",
+                  desc: "Deployment of highly efficient machine learning models running locally on edge devices for fast inference.",
+                  tags: ["Python", "TensorFlow", "Edge Computing"],
+                  image: localEdgeAiImg
+                },
+                {
+                  title: "Multi-Agent Dev Env",
+                  desc: "Robust environment designed specifically for developing, testing, and deploying multi-agent systems.",
+                  tags: ["Typescript", "Node.js", "React"],
+                  image: multiAgentEnvImg
+                },
+                {
+                  title: "IoT Cleaning Monitor",
+                  desc: "Mobile IoT monitoring system designed for the cleaning department to track tasks and equipment.",
+                  tags: ["React Native", "IoT", "Node.js"],
+                  image: iotCleaningMonitorImg
+                },
+                {
+                  title: "Homestay Landing Page",
+                  desc: "Elegant, fully responsive landing page optimized for homestay bookings and promotions.",
+                  tags: ["React", "Vite", "Tailwind"],
+                  image: homestayLandingImg
+                },
+                {
+                  title: "Inventory Dashboard",
+                  desc: "Comprehensive inventory management system integrated with an intuitive analytics dashboard.",
+                  tags: ["Next.js", "PostgreSQL", "Tailwind"],
+                  image: inventoryDashboardImg
+                },
+                {
+                  title: "Travel System",
+                  desc: "End-to-end travel booking platform featuring itinerary management and real-time updates.",
+                  tags: ["React", "Firebase", "Stripe"],
+                  image: travelSystemImg
+                },
+                {
+                  title: "Document Control",
+                  desc: "Highly secure document control and version management system for enterprise compliance.",
+                  tags: ["React", "Node.js", "MongoDB"],
+                  image: docControlSystemImg
+                },
+                {
+                  title: "LocalLLM Desktop App",
+                  desc: "Cross-platform desktop application to run and manage Large Language Models entirely locally.",
+                  tags: ["Electron", "Python", "React"],
+                  image: localllmAppImg
+                },
+                {
+                  title: "Corporation Management",
+                  desc: "Enterprise-grade corporation management and workflow automation system.",
+                  tags: ["Next.js", "PostgreSQL", "Docker"],
+                  image: corpManagementImg
+                },
+                {
+                  title: "Job Offering System",
+                  desc: "Dynamic platform connecting employers with job seekers through advanced matching algorithms.",
+                  tags: ["React", "Node.js", "Tailwind"],
+                  image: socialAppImg
+                },
+                {
+                  title: "Toilet Monitoring System",
+                  desc: "IoT-based toilet monitoring and maintenance tracking system for facility management.",
+                  tags: ["React Native", "IoT", "Firebase"],
+                  image: aiDashboardImg
+                }
               ].map((project, i) => (
                 <Card
                   key={i}
@@ -172,15 +303,25 @@ function App() {
                     borderColor: 'rgba(255, 255, 255, 0.1)',
                     backdropFilter: 'blur(12px)',
                     boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-                    borderWidth: '1px'
+                    borderWidth: '1px',
+                    padding: '24px',
+                    overflow: 'hidden'
                   }}
                 >
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%)', pointerEvents: 'none' }} />
-                  <h3 style={{ fontSize: '2.2rem', marginBottom: '1rem', color: '#fff', fontWeight: 600, letterSpacing: '-0.02em', position: 'relative' }}>{project.title}</h3>
-                  <p style={{ fontSize: '1.2rem', color: '#ccc', lineHeight: 1.6, position: 'relative' }}>{project.desc}</p>
-                  <div style={{ marginTop: 'auto', paddingTop: '2rem', display: 'flex', gap: '10px', position: 'relative' }}>
-                    <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '24px', fontSize: '0.9rem', border: '1px solid rgba(255,255,255,0.05)' }}>React</span>
-                    <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '24px', fontSize: '0.9rem', border: '1px solid rgba(255,255,255,0.05)' }}>Node.js</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
+                    <div style={{ width: '100%', height: '240px', borderRadius: '8px', overflow: 'hidden', marginBottom: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', color: '#fff', fontWeight: 600, letterSpacing: '-0.02em', position: 'relative' }}>{project.title}</h3>
+                      <p style={{ fontSize: '1.05rem', color: '#ccc', lineHeight: 1.5, position: 'relative', flexGrow: 1 }}>{project.desc}</p>
+                      <div style={{ marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '8px', position: 'relative' }}>
+                        {project.tags.map((tag, idx) => (
+                          <span key={idx} style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '24px', fontSize: '0.8rem', border: '1px solid rgba(255,255,255,0.05)' }}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </Card>
               ))}
@@ -192,10 +333,283 @@ function App() {
         <Clients />
 
         {/* Contact Section */}
-        <section id="contact" style={{ padding: '100px 40px', color: 'white', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <h2 style={{ fontSize: '3rem', marginBottom: '20px' }}>Ready to start?</h2>
-          <p style={{ marginBottom: '40px', fontSize: '1.2rem', opacity: 0.7 }}>Let's create something amazing together.</p>
-          <a href="mailto:hello@example.com" style={{ display: 'inline-block', padding: '16px 48px', background: 'white', color: 'black', borderRadius: '50px', fontWeight: 600, textDecoration: 'none', fontSize: '1.1rem' }}>Get in Touch</a>
+        <section id="contact" style={{ padding: '100px 40px', color: 'white', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative', zIndex: 10 }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '3rem', marginBottom: '20px', fontWeight: 700, letterSpacing: '-0.02em' }}>Let's Build Something Great</h2>
+            <p style={{ marginBottom: '50px', fontSize: '1.2rem', opacity: 0.7, maxWidth: '500px', margin: '0 auto 50px' }}>
+              Fill out the form below to pitch your project, upload files, and send it directly to my inbox.
+            </p>
+
+            <form 
+              action="https://formsubmit.co/mmmm.muaz03@gmail.com" 
+              method="POST" 
+              encType="multipart/form-data"
+              style={{
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(16px)',
+                borderRadius: '24px',
+                padding: '40px',
+                textAlign: 'left',
+                boxShadow: '0 30px 60px rgba(0,0,0,0.4)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '24px'
+              }}
+            >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_next" value={window.location.href} />
+              <input type="hidden" name="_subject" value="New Portfolio Contact Submission!" />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label htmlFor="name" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Your Name</label>
+                  <input 
+                    type="text" 
+                    id="name"
+                    name="name" 
+                    required 
+                    placeholder="John Labu"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.04)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      borderRadius: '12px',
+                      padding: '14px 18px',
+                      color: 'white',
+                      fontSize: '1rem',
+                      outline: 'none',
+                      transition: 'border-color 0.3s, box-shadow 0.3s'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                      e.target.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.15)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                </div>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <label htmlFor="email" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Your Email</label>
+                  <input 
+                    type="email" 
+                    id="email"
+                    name="email" 
+                    required 
+                    placeholder="john@example.com"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.04)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      borderRadius: '12px',
+                      padding: '14px 18px',
+                      color: 'white',
+                      fontSize: '1rem',
+                      outline: 'none',
+                      transition: 'border-color 0.3s, box-shadow 0.3s'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                      e.target.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.15)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label htmlFor="title" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Subject / Project Title</label>
+                <input 
+                  type="text" 
+                  id="title"
+                  name="title" 
+                  required 
+                  placeholder="E.g., Web App Development Inquiry"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    padding: '14px 18px',
+                    color: 'white',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'border-color 0.3s, box-shadow 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                    e.target.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.15)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label htmlFor="description" style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Message / Description</label>
+                <textarea 
+                  id="description"
+                  name="description" 
+                  required 
+                  rows="5"
+                  placeholder="Outline the details of your inquiry or project here..."
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    padding: '14px 18px',
+                    color: 'white',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    resize: 'none',
+                    transition: 'border-color 0.3s, box-shadow 0.3s',
+                    fontFamily: 'inherit'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                    e.target.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.15)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '10px' }}>
+                {/* Image Upload */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Reference Image</span>
+                  <label 
+                    htmlFor="image-upload" 
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      border: '1px dashed rgba(255, 255, 255, 0.15)',
+                      borderRadius: '12px',
+                      padding: '20px',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      minHeight: '120px',
+                      transition: 'border-color 0.3s, background-color 0.3s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                      e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.02)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+                    }}
+                  >
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="Upload Preview" style={{ maxWidth: '100%', maxHeight: '80px', borderRadius: '6px', objectFit: 'contain' }} />
+                    ) : (
+                      <>
+                        <FaImage size={28} style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }} />
+                        <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>Upload Reference Image</span>
+                      </>
+                    )}
+                    <input 
+                      type="file" 
+                      id="image-upload" 
+                      name="image" 
+                      accept="image/*" 
+                      onChange={handleImageChange}
+                      style={{ display: 'none' }} 
+                    />
+                  </label>
+                </div>
+
+                {/* File Upload */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>Project Files / Brief</span>
+                  <label 
+                    htmlFor="file-upload" 
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      border: '1px dashed rgba(255, 255, 255, 0.15)',
+                      borderRadius: '12px',
+                      padding: '20px',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      minHeight: '120px',
+                      transition: 'border-color 0.3s, background-color 0.3s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                      e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.02)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+                    }}
+                  >
+                    <FaFolderOpen size={28} style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }} />
+                    <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>Upload Doc/PDF/ZIP</span>
+                    <input 
+                      type="file" 
+                      id="file-upload" 
+                      name="attachment" 
+                      accept=".pdf,.doc,.docx,.zip,.rar,.txt"
+                      style={{ display: 'none' }} 
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const label = e.currentTarget.parentElement.querySelector('span:nth-child(2)');
+                          if (label) label.textContent = file.name;
+                        }
+                      }}
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <button 
+                type="submit"
+                style={{
+                  marginTop: '15px',
+                  background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '16px 30px',
+                  fontSize: '1.05rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)',
+                  alignSelf: 'center',
+                  minWidth: '200px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.03)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(168, 85, 247, 0.45)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(168, 85, 247, 0.3)';
+                }}
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </section>
 
       </div>
