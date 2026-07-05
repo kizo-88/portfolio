@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Services from './components/Services.jsx';
 import Experience from './components/Experience.jsx';
-import LiquidEther from './components/LiquidEther.jsx';
 import LogoLoop from './components/LogoLoop.jsx';
 import CardSwap, { Card } from './components/CardSwap.jsx';
 import FloatingShape from './components/FloatingShape.jsx';
@@ -53,6 +52,38 @@ const techLogos = [
 
 function App() {
   const [imagePreview, setImagePreview] = useState(null);
+  const heroVideoRef = useRef(null);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    let lastY = window.scrollY;
+    let stopTimer;
+    const handleScroll = () => {
+      const video = heroVideoRef.current;
+      if (!video) return;
+      // Ignore spurious scroll events with no actual movement (e.g. on load).
+      if (window.scrollY === lastY) return;
+      lastY = window.scrollY;
+
+      // Play while the user is actively scrolling...
+      if (video.paused) video.play().catch(() => {});
+
+      // ...and pause shortly after scrolling stops.
+      clearTimeout(stopTimer);
+      stopTimer = setTimeout(() => {
+        if (video && !video.paused) video.pause();
+      }, 150);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(stopTimer);
+    };
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -83,30 +114,25 @@ function App() {
       </nav>
 
       <section id="hero" style={{ position: 'relative', height: '100vh', width: '100%', overflow: 'hidden' }}>
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={16}
-          iterationsPoisson={16}
-          resolution={0.35}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+        <video
+          ref={heroVideoRef}
+          src="/3dhero.mp4"
+          loop
+          muted
+          playsInline
+          preload="auto"
+          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, objectFit: 'cover' }}
         />
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'white', pointerEvents: 'none' }}>
-          <h1 style={{ fontSize: '5vw', margin: 0, fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, textAlign: 'center', textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(180deg, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.15) 50%, rgba(5,5,5,0.65) 100%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'white', pointerEvents: 'none', padding: '0 24px' }}>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.85rem', fontWeight: 500, letterSpacing: '0.35em', textTransform: 'uppercase', color: '#FF9FFC', marginBottom: '18px', opacity: 0.9 }}>
+            Muhammad Muaz — Portfolio
+          </span>
+          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', margin: 0, fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1.05, textAlign: 'center', textShadow: '0 6px 30px rgba(0,0,0,0.45)' }}>
             Yeah that's me, <br />
-            <span style={{ color: '#FF9FFC' }}>Developer u looking for</span>
+            <span style={{ background: 'linear-gradient(90deg, #FF9FFC 0%, #B19EEF 50%, #5227FF 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', color: 'transparent' }}>Developer u looking for</span>
           </h1>
-          <p style={{ fontSize: '1.2rem', marginTop: '20px', maxWidth: '600px', textAlign: 'center', opacity: 0.9, lineHeight: 1.6, textShadow: '0 2px 5px rgba(0,0,0,0.3)' }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.25rem)', marginTop: '24px', maxWidth: '620px', textAlign: 'center', opacity: 0.85, lineHeight: 1.7, fontWeight: 400, letterSpacing: '0.01em', textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
             My name is Muhammad Muaz, graduate from UMPSA, and currently work as Executive System Developer at UMPSA Holdings
           </p>
         </div>
