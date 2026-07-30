@@ -78,30 +78,36 @@
 
 .xyflow__node-default,
 .xyflow__node-input,
-.xyflow__node-output {
+.xyflow__node-output,
+.react-flow__node-default,
+.react-flow__node-input,
+.react-flow__node-output {
   background: rgba(25, 25, 25, 0.9) !important;
   color: white !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-  font-size: 12px !important;
-  padding: 10px !important;
+  font-size: 14px !important;
+  padding: 12px !important;
   min-width: 120px !important;
   text-align: center !important;
 }
 
-.xyflow__handle {
+.xyflow__handle,
+.react-flow__handle {
   background: #a855f7 !important;
   width: 8px !important;
   height: 8px !important;
 }
 
-.xyflow__edge-path {
+.xyflow__edge-path,
+.react-flow__edge-path {
   stroke: rgba(255, 255, 255, 0.5) !important;
   stroke-width: 2 !important;
 }
 
-.xyflow__controls-button {
+.xyflow__controls-button,
+.react-flow__controls-button {
   background: rgba(30, 30, 30, 0.8) !important;
   fill: white !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
