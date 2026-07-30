@@ -59,6 +59,20 @@ const DnDFlow = ({ onWorkflowChange }) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
 
+  const onNodeDoubleClick = useCallback((event, node) => {
+    const newLabel = prompt("Enter new text for this node:", node.data.label);
+    if (newLabel !== null && newLabel.trim() !== "") {
+      setNodes((nds) =>
+        nds.map((n) => {
+          if (n.id === node.id) {
+            return { ...n, data: { ...n.data, label: newLabel } };
+          }
+          return n;
+        })
+      );
+    }
+  }, [setNodes]);
+
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [],
@@ -139,6 +153,7 @@ const DnDFlow = ({ onWorkflowChange }) => {
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
+          onNodeDoubleClick={onNodeDoubleClick}
           fitView
         >
           <Controls />
@@ -153,7 +168,7 @@ export default function WorkflowBuilder({ onWorkflowChange }) {
   return (
     <div style={{ width: '100%', marginBottom: '20px' }}>
       <p style={{ fontSize: '0.9rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)', marginBottom: '8px' }}>
-        Visually describe your desired workflow (Drag and Drop nodes to the canvas and connect them)
+        Visually describe your desired workflow (Drag nodes to canvas, connect them, and <strong>double-click</strong> a node to edit its text)
       </p>
       <ReactFlowProvider>
         <DnDFlow onWorkflowChange={onWorkflowChange} />
