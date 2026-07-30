@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import WorkflowBuilder from './components/WorkflowBuilder.jsx';
 import Services from './components/Services.jsx';
 import Experience from './components/Experience.jsx';
 import LogoLoop from './components/LogoLoop.jsx';
@@ -52,6 +53,7 @@ const techLogos = [
 
 function App() {
   const [imagePreview, setImagePreview] = useState(null);
+  const [workflowDetails, setWorkflowDetails] = useState("");
   const heroVideoRef = useRef(null);
 
   useEffect(() => {
@@ -387,6 +389,7 @@ function App() {
               <input type="hidden" name="_next" value={window.location.href} />
               <input type="hidden" name="_subject" value="New Portfolio Contact Submission!" />
               <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="workflow_details" value={workflowDetails} />
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -605,6 +608,8 @@ function App() {
                   </label>
                 </div>
               </div>
+
+              <WorkflowBuilder onWorkflowChange={setWorkflowDetails} />
 
               <button 
                 type="submit"
