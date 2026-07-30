@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { toBlob } from 'html-to-image';
 import WorkflowBuilder from './components/WorkflowBuilder.jsx';
 import Services from './components/Services.jsx';
 import Experience from './components/Experience.jsx';
@@ -55,6 +56,48 @@ function App() {
   const [imagePreview, setImagePreview] = useState(null);
   const [workflowDetails, setWorkflowDetails] = useState("");
   const heroVideoRef = useRef(null);
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+    }
+
+    if (workflowDetails && workflowDetails.trim() !== "") {
+      const flowElement = document.querySelector('.reactflow-wrapper');
+      if (flowElement) {
+        try {
+          const blob = await toBlob(flowElement, { 
+            backgroundColor: '#111111',
+            style: { transform: 'scale(1)', transformOrigin: 'top left' }
+          });
+          
+          if (blob) {
+            const file = new File([blob], 'flowchart.png', { type: 'image/png' });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            
+            let hiddenInput = form.querySelector('input[name="flowchart_image"]');
+            if (!hiddenInput) {
+              hiddenInput = document.createElement('input');
+              hiddenInput.type = 'file';
+              hiddenInput.name = 'flowchart_image';
+              hiddenInput.style.display = 'none';
+              form.appendChild(hiddenInput);
+            }
+            hiddenInput.files = dataTransfer.files;
+          }
+        } catch (err) {
+          console.error('Failed to capture flowchart screenshot:', err);
+        }
+      }
+    }
+    
+    form.submit();
+  };
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -372,6 +415,7 @@ function App() {
               action="https://formsubmit.co/mmmm.muaz03@gmail.com" 
               method="POST" 
               encType="multipart/form-data"
+              onSubmit={handleFormSubmit}
               style={{
                 background: 'rgba(255, 255, 255, 0.02)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
