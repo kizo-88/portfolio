@@ -55,7 +55,6 @@ const techLogos = [
 function App() {
   const [imagePreview, setImagePreview] = useState(null);
   const [workflowDetails, setWorkflowDetails] = useState("");
-  const heroVideoRef = useRef(null);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -104,30 +103,6 @@ function App() {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-
-    let lastY = window.scrollY;
-    let stopTimer;
-    const handleScroll = () => {
-      const video = heroVideoRef.current;
-      if (!video) return;
-      // Ignore spurious scroll events with no actual movement (e.g. on load).
-      if (window.scrollY === lastY) return;
-      lastY = window.scrollY;
-
-      // Play while the user is actively scrolling...
-      if (video.paused) video.play().catch(() => {});
-
-      // ...and pause shortly after scrolling stops.
-      clearTimeout(stopTimer);
-      stopTimer = setTimeout(() => {
-        if (video && !video.paused) video.pause();
-      }, 150);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(stopTimer);
-    };
   }, []);
 
   const handleImageChange = (e) => {
@@ -158,68 +133,71 @@ function App() {
         </LiquidButton>
       </nav>
 
-      <section id="hero" style={{ position: 'relative', minHeight: '100vh', width: '100%', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#050505', padding: '100px 40px 60px' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at 50% 50%, rgba(82, 39, 255, 0.08) 0%, rgba(5, 5, 5, 0) 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '1200px', alignItems: 'center', gap: '40px', flexWrap: 'wrap', flexDirection: 'row' }}>
-          
-          {/* Left Hand ASCII */}
-          <pre style={{
-            fontFamily: 'monospace',
-            fontSize: 'clamp(10px, 1.2vw, 14px)',
-            color: '#FF9FFC',
-            textShadow: '0 0 10px rgba(255, 159, 252, 0.4)',
-            margin: 0,
-            pointerEvents: 'none',
-            lineHeight: '1.25',
-            flex: '1 1 auto',
-            textAlign: 'left'
+      <section id="hero" style={{ position: 'relative', width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px', boxSizing: 'border-box', background: '#050505' }}>
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: '1360px',
+          minHeight: '440px',
+          aspectRatio: '1024 / 345',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          backgroundColor: '#fdfdfd',
+          backgroundImage: 'url(/hero-hands-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '40px 24px',
+          boxShadow: '0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08)',
+          boxSizing: 'border-box'
+        }}>
+          <h1 style={{
+            fontFamily: "'Newsreader', 'Playfair Display', Georgia, serif",
+            fontSize: 'clamp(1.5rem, 3.2vw, 3rem)',
+            fontWeight: 400,
+            lineHeight: 1.25,
+            color: '#111111',
+            textAlign: 'center',
+            maxWidth: '680px',
+            margin: '0 0 24px 0',
+            letterSpacing: '-0.015em',
+            textRendering: 'optimizeLegibility'
           }}>
-{`        _.-._
-      /| | | |
-     ||| | | |
-     ||| | | |
-   _ ||| | | |
-  / \\| | | | |
- (_/       \\\\  \\\\
-   |        \\\\  \\\\
-   |         \\\\  \\\\
-   |          \\\\__\\\\`}
-          </pre>
-
-          {/* Center Content */}
-          <div style={{ textAlign: 'center', maxWidth: '520px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '30px', flex: '2 1 auto' }}>
-            <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(2.2rem, 3.5vw, 3.8rem)', fontWeight: 700, lineHeight: 1.15, margin: 0, color: 'white', letterSpacing: '-0.03em' }}>
-              Give a white glove experience to every prospect
-            </h1>
-            <LiquidButton href="#contact" variant="default" size="default" style={{ textDecoration: 'none', color: 'white' }}>
-              Let's talk
-            </LiquidButton>
-          </div>
-
-          {/* Right Hand ASCII */}
-          <pre style={{
-            fontFamily: 'monospace',
-            fontSize: 'clamp(10px, 1.2vw, 14px)',
-            color: '#B19EEF',
-            textShadow: '0 0 10px rgba(177, 158, 239, 0.4)',
-            margin: 0,
-            pointerEvents: 'none',
-            lineHeight: '1.25',
-            flex: '1 1 auto',
-            textAlign: 'right'
-          }}>
-{`   /___/          |
-  /   /          /
- /   /          /
-/   /______    /
-/ /| | | | \\  /
-|||| | | | |\\_)
-|||| | | | |
-|||| | | | |
- \\|| | | |/
-    \`-'-'-\``}
-          </pre>
-
+            Give a white glove experience to every prospect
+          </h1>
+          <a
+            href="#contact"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#000000',
+              color: '#ffffff',
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              padding: '10px 24px',
+              borderRadius: '9999px',
+              textDecoration: 'none',
+              transition: 'transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.opacity = '0.9';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
+            }}
+          >
+            Let's talk
+          </a>
         </div>
       </section>
 
