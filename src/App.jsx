@@ -7,6 +7,9 @@ import LogoLoop from './components/LogoLoop.jsx';
 import CardSwap, { Card } from './components/CardSwap.jsx';
 import FloatingShape from './components/FloatingShape.jsx';
 import Clients from './components/Clients.jsx';
+import AsciiHandsHero from './components/AsciiHandsHero.jsx';
+import BlurText from './components/BlurText.jsx';
+import SpecularButton from './components/SpecularButton.jsx';
 import { LiquidButton, LiquidContainer } from '@/components/ui/liquid-glass-button';
 
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiThreedotjs, SiNodedotjs, SiGraphql, SiCplusplus, SiPython } from 'react-icons/si';
@@ -119,7 +122,7 @@ function App() {
   };
 
   return (
-    <div className="portfolio-app">
+    <div className="portfolio-app" style={{ backgroundColor: '#000000' }}>
       <nav style={{ padding: '20px 40px', position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 50, color: 'white', display: 'flex', justifyContent: 'space-between', boxSizing: 'border-box', alignItems: 'center', backdropFilter: 'blur(5px)' }}>
         <div style={{ fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.02em' }}></div>
         <LiquidContainer className="px-8 py-2 gap-8 hidden md:flex">
@@ -133,76 +136,92 @@ function App() {
         </LiquidButton>
       </nav>
 
-      <section id="hero" style={{ position: 'relative', width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px', boxSizing: 'border-box', background: '#050505' }}>
+      <section id="hero" style={{
+        position: 'relative',
+        width: '100%',
+        height: '100vh',
+        paddingTop: '80px',
+        boxSizing: 'border-box',
+        backgroundColor: '#000000',
+        overflow: 'hidden'
+      }}>
+        <AsciiHandsHero />
+
+        {/* Centered title overlay */}
         <div style={{
-          position: 'relative',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          textAlign: 'center',
+          zIndex: 10,
+          pointerEvents: 'none',
+          userSelect: 'none',
           width: '100%',
-          maxWidth: '1360px',
-          minHeight: '440px',
-          aspectRatio: '1024 / 345',
-          borderRadius: '24px',
-          overflow: 'hidden',
-          backgroundColor: '#fdfdfd',
-          backgroundImage: 'url(/hero-hands-bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '40px 24px',
-          boxShadow: '0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08)',
-          boxSizing: 'border-box'
+          padding: '0 2rem',
+          boxSizing: 'border-box',
         }}>
-          <h1 style={{
-            fontFamily: "'Newsreader', 'Playfair Display', Georgia, serif",
-            fontSize: 'clamp(1.5rem, 3.2vw, 3rem)',
-            fontWeight: 400,
-            lineHeight: 1.25,
-            color: '#111111',
-            textAlign: 'center',
-            maxWidth: '680px',
-            margin: '0 0 24px 0',
-            letterSpacing: '-0.015em',
-            textRendering: 'optimizeLegibility'
-          }}>
-            Give a white glove experience to every prospect
-          </h1>
-          <a
-            href="#contact"
+          <BlurText
+            text="Crafting Digital Experiences"
+            animateBy="words"
+            direction="top"
+            delay={120}
+            stepDuration={0.5}
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#000000',
               color: '#ffffff',
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              padding: '10px 24px',
-              borderRadius: '9999px',
-              textDecoration: 'none',
-              transition: 'transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-              cursor: 'pointer'
+              fontSize: 'clamp(2.2rem, 5.5vw, 5.5rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              margin: 0,
+              textShadow: '0 0 60px rgba(255,255,255,0.12)',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.opacity = '0.9';
+          />
+          <BlurText
+            text="Full-stack developer building elegant, high-performance products."
+            animateBy="words"
+            direction="bottom"
+            delay={60}
+            stepDuration={0.4}
+            style={{
+              justifyContent: 'center',
+              color: 'rgba(255,255,255,0.55)',
+              fontSize: 'clamp(0.85rem, 1.6vw, 1.15rem)',
+              fontWeight: 400,
+              marginTop: '1.2rem',
+              letterSpacing: '0.01em',
+              lineHeight: 1.6,
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.opacity = '1';
-            }}
-          >
-            Let's talk
-          </a>
+          />
+          {/* Contact button */}
+          <div style={{ marginTop: '2.2rem', display: 'flex', justifyContent: 'center', pointerEvents: 'all' }}>
+            <SpecularButton
+              size="md"
+              radius={999}
+              tint="#ffffff"
+              tintOpacity={0.06}
+              blur={8}
+              textColor="#ffffff"
+              lineColor="#ffffff"
+              baseColor="#444444"
+              intensity={1.2}
+              shineSize={12}
+              shineFade={38}
+              thickness={1}
+              followMouse
+              proximity={300}
+              autoAnimate={false}
+              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Let&apos;s Work Together
+            </SpecularButton>
+          </div>
         </div>
       </section>
 
       {/* Unified Background Container */}
-      <div style={{ background: '#050505', position: 'relative', zIndex: 2, overflow: 'hidden' }}>
+      <div style={{ background: '#050505', position: 'relative', zIndex: 2, overflow: 'hidden', marginTop: '80px' }}>
         
         {/* Background 3D Decorations */}
         <div className="absolute top-40 left-0 w-64 h-64 opacity-20 blur-[2px] pointer-events-none transform -rotate-12 z-0">
