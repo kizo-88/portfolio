@@ -158,28 +158,68 @@ function App() {
         </LiquidButton>
       </nav>
 
-      <section id="hero" style={{ position: 'relative', height: '100vh', width: '100%', overflow: 'hidden' }}>
-        <video
-          ref={heroVideoRef}
-          src="/3dhero.mp4"
-          loop
-          muted
-          playsInline
-          preload="auto"
-          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(180deg, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.15) 50%, rgba(5,5,5,0.65) 100%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'white', pointerEvents: 'none', padding: '0 24px' }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.85rem', fontWeight: 500, letterSpacing: '0.35em', textTransform: 'uppercase', color: '#FF9FFC', marginBottom: '18px', opacity: 0.9 }}>
-            Muhammad Muaz — Portfolio
-          </span>
-          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', margin: 0, fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1.05, textAlign: 'center', textShadow: '0 6px 30px rgba(0,0,0,0.45)' }}>
-            Yeah that's me, <br />
-            <span style={{ background: 'linear-gradient(90deg, #FF9FFC 0%, #B19EEF 50%, #5227FF 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', color: 'transparent' }}>Developer u looking for</span>
-          </h1>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(1rem, 1.4vw, 1.25rem)', marginTop: '24px', maxWidth: '620px', textAlign: 'center', opacity: 0.85, lineHeight: 1.7, fontWeight: 400, letterSpacing: '0.01em', textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
-            My name is Muhammad Muaz, graduate from UMPSA, and currently work as Executive System Developer at UMPSA Holdings
-          </p>
+      <section id="hero" style={{ position: 'relative', minHeight: '100vh', width: '100%', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#050505', padding: '100px 40px 60px' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at 50% 50%, rgba(82, 39, 255, 0.08) 0%, rgba(5, 5, 5, 0) 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '1200px', alignItems: 'center', gap: '40px', flexWrap: 'wrap', flexDirection: 'row' }}>
+          
+          {/* Left Hand ASCII */}
+          <pre style={{
+            fontFamily: 'monospace',
+            fontSize: 'clamp(10px, 1.2vw, 14px)',
+            color: '#FF9FFC',
+            textShadow: '0 0 10px rgba(255, 159, 252, 0.4)',
+            margin: 0,
+            pointerEvents: 'none',
+            lineHeight: '1.25',
+            flex: '1 1 auto',
+            textAlign: 'left'
+          }}>
+{`        _.-._
+      /| | | |
+     ||| | | |
+     ||| | | |
+   _ ||| | | |
+  / \\| | | | |
+ (_/       \\\\  \\\\
+   |        \\\\  \\\\
+   |         \\\\  \\\\
+   |          \\\\__\\\\`}
+          </pre>
+
+          {/* Center Content */}
+          <div style={{ textAlign: 'center', maxWidth: '520px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '30px', flex: '2 1 auto' }}>
+            <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(2.2rem, 3.5vw, 3.8rem)', fontWeight: 700, lineHeight: 1.15, margin: 0, color: 'white', letterSpacing: '-0.03em' }}>
+              Give a white glove experience to every prospect
+            </h1>
+            <LiquidButton href="#contact" variant="default" size="default" style={{ textDecoration: 'none', color: 'white' }}>
+              Let's talk
+            </LiquidButton>
+          </div>
+
+          {/* Right Hand ASCII */}
+          <pre style={{
+            fontFamily: 'monospace',
+            fontSize: 'clamp(10px, 1.2vw, 14px)',
+            color: '#B19EEF',
+            textShadow: '0 0 10px rgba(177, 158, 239, 0.4)',
+            margin: 0,
+            pointerEvents: 'none',
+            lineHeight: '1.25',
+            flex: '1 1 auto',
+            textAlign: 'right'
+          }}>
+{`   /___/          |
+  /   /          /
+ /   /          /
+/   /______    /
+/ /| | | | \\  /
+|||| | | | |\\_)
+|||| | | | |
+|||| | | | |
+ \\|| | | |/
+    \`-'-'-\``}
+          </pre>
+
         </div>
       </section>
 
